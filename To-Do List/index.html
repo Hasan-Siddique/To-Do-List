@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            height: 400px;
+            width: 100%;
+            background-color: lightcyan;
+            position: relative;
+            top: 10px;
+
+        }
+
+
+
+
+
+        label {
+            position: relative;
+            top: 10px;
+            margin: 50px;
+            color: blue;
+            font-size: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        input {
+            padding: 8px;
+            border-bottom: 2px solid darkcyan;
+            border-top: 0px;
+        }
+
+        button {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            padding: 8px;
+            width: 60px;
+            border-radius: 5px;
+            position: relative;
+            top: 10px;
+        }
+
+
+        li {
+            margin-bottom: 2px  ;
+            background-color: rgb(183, 238, 238);
+            border-bottom: 1px solid black;
+            padding: 5px;
+            position: relative;
+            top: 30px;
+            left: 20px;
+            width: 1000px;
+        }
+
+        .cross_icon{
+            height: 20px;
+            width: 20px;
+            float: right;
+            cursor: pointer;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <label for="#">Add List Items :
+            <input type="text" name="#" id="inpt">
+        </label>
+        <button type="submit" id="btn">Add</button>
+
+        <ol>
+            <li>Eggs <img src="./cross_icon.png" alt="#" class="cross_icon"> </li>
+            <li>Fish <img src="./cross_icon.png" alt="#" class="cross_icon"></li>
+            <li>Milk Shake <img src="./cross_icon.png" alt="#" class="cross_icon"></li>
+        </ol>
+    </div>
+
+    <script src="Jquery.js"></script>
+
+    <Script>
+
+        $(document).ready(function () {
+            $("#btn").click(function () {
+
+                var inputvalue = $("#inpt").val();
+                // var inputicon = $(".cross_icon").val();
+
+                if (inputvalue) {
+
+                    $("ol").append("<li>" + inputvalue + " <img src='./cross_icon.png' alt='#'' class='cross_icon'> </li>");
+                    $("#inpt").val("");
+                    // $("ol").append("<li>" + inputicon + "</li>");
+                    // $(".cross_icon").val("");
+
+                }
+                else {
+                    alert("Please Enter the Value")
+                }
+
+            });
+
+
+            $("ol").on("click", "li", function () {
+                if ($(this).find('s').length) {
+                    $(this).html($(this).text() + "<img src='./cross_icon.png' alt='#' class='cross_icon'>");
+                } else {
+                    $(this).html("<s>" + $(this).text() + "</s> <img src='./cross_icon.png' alt='#' class='cross_icon'>");
+                }
+                $("s").css({ "color": "red" });
+            });
+
+
+            $("ol").on("click", ".cross_icon", function(){
+                $(this).closest("li").remove();
+            });
+
+            // $(".cross_icon").click(function () {
+            //     $(this).parentsUntil("li").remove();
+            // });
+
+        });
+
+    </Script>
+
+
+</body>
+
+</html>
